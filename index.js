@@ -24,15 +24,23 @@ formSelect.addEventListener("submit", addMovie)
 
 const deleteMovie = (event) => {
     event.target.parentNode.remove()
-    message.textContent = "Movie obliterated"
+    message.textContent = `${event.target.parentNode.firstChild.textContent} obliterated!`
+    revealMessage()
 }
 
 const crossOffMovie = (e) => {
     e.target.classList.toggle("checked")
     if(e.target.classList.contains("checked")){
-        message.textContent = "Movie watched!"
+        message.textContent = `${e.target.textContent} watched!`
     }else{
-        message.textContent = "Movie returned"
+        message.textContent = `${e.target.textContent} returned!`
     }
+    revealMessage()
 }
 
+const revealMessage = () => {
+    message.classList.remove("hide")
+    setTimeout(()=>{
+        message.classList.add("hide")
+    }, 1000)
+}
